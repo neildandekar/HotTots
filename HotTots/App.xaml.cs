@@ -9,12 +9,6 @@ namespace HotTots
         {
             MainPage = new NavigationPage(new StudentPage());
         }
-        //public static Page GetMainPage()
-       
-        //    var database = new thsNamesDb();
-
-        //    return new NavigationPage(new StudentNames(database));
-        //}
         protected override void OnStart()
         {
         }

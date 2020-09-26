@@ -24,12 +24,18 @@ namespace HotTots.Droid
         }
         public void convert()
         {
+            string content;
+            AssetManager assets = this.Assets;
+            using (StreamReader sr = new StreamReader(assets.Open("DBCOPY.txt")))
+            {
+                content = sr.ReadToEnd();
+            }
             var sqliteFilename = "hottots.db";
             string documentsDirectoryPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var path = Path.Combine(documentsDirectoryPath, sqliteFilename);
 
             // This is where we copy in our pre-created database
-            if (!File.Exists(path))
+            if (!File.Exists(path) || content.Equals("FORCE"))
             {
                 AssetManager asset = this.Assets;
                 using (var binaryReader = new BinaryReader(asset.Open(sqliteFilename)))
